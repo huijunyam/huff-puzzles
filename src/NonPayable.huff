@@ -9,5 +9,12 @@
  */
 
 #define macro MAIN() = takes(0) returns(0) {
+    callvalue
+    iszero 
+    getval jumpi
+    revert 
+
+    getval:
+        0x20 0x00 return
 
 }

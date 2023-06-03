@@ -10,8 +10,28 @@
  */
 
  #define function makeContract() payable returns(address)
+ #define constant CODE = 0x600a8060093d393df3620caffe3d5260203df3
 
 
  #define macro MAIN() = takes(0) returns(0) {
+    0x00
+    calldataload
+    0xE0
+    shr
+
+     __FUNC_SIG(makeContract) eq makeContract jumpi
+    revert 
     
+    makeContract:
+        MAKE_CONTRACT()
  }
+
+#define macro MAKE_CONTRACT() = takes(0) returns(0) {
+    [CODE]
+    0x00
+    mstore 
+
+    0x13 0x0d 0x00 create
+    0x00 mstore
+    0x20 0x00 return
+}

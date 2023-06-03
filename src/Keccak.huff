@@ -9,5 +9,17 @@
 
 
  #define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload     // pointer
+    0x00 mstore           
     
+    0x20 calldataload     // size
+    0x20 mstore           
+    
+    0x40 calldataload     // content
+    0x40 mstore           
+    
+    0x60 0x00 sha3        
+    0x00 mstore           
+
+    0x20 0x00 return      
  }
